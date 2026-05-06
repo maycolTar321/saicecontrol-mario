@@ -1,0 +1,455 @@
+/* (Append to existing style.css or overwrite with new updates) */
+:root {
+    --mario-red: #E52521;
+    --mario-blue: #049CD8;
+    --mario-yellow: #FBD000;
+    --mario-green: #43B047;
+    --mario-brown: #5E3929;
+    
+    --bg-dark: #0a0e17;
+    --bg-glass: rgba(255, 255, 255, 0.05);
+    --bg-card: rgba(255, 255, 255, 0.08);
+    --border-glass: rgba(255, 255, 255, 0.15);
+    
+    --text-white: #ffffff;
+    --text-gray: #a0aec0;
+    
+    --radius-xl: 32px;
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    
+    --shadow-premium: 0 20px 40px rgba(0, 0, 0, 0.3);
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animations */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes scaleUp {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes powerUp {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); filter: brightness(1.2); }
+    100% { transform: scale(1); }
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Outfit', 'Inter', sans-serif; 
+}
+
+body { 
+    background: radial-gradient(circle at top right, #1a2a44, #0a0e17);
+    color: var(--text-white); 
+    min-height: 100vh; 
+    overflow-x: hidden;
+    display: flex;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: var(--mario-red); border-radius: 10px; }
+
+.app-container { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    min-height: 100vh;
+    padding: 20px;
+    gap: 20px;
+}
+
+@media (min-width: 1025px) {
+    .app-container { flex-direction: row; padding: 30px; gap: 30px; }
+}
+
+/* Sidebar Styling - Premium Floating Look */
+.sidebar {
+    width: 320px;
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-xl);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    height: calc(100vh - 60px);
+    position: sticky;
+    top: 30px;
+    z-index: 100;
+    transition: var(--transition);
+    animation: slideInRight 0.8s ease-out;
+}
+
+.brand { 
+    text-align: center; 
+    margin-bottom: 40px; 
+}
+
+.logo { 
+    width: 80px; 
+    height: 80px; 
+    background: linear-gradient(135deg, var(--mario-red), #b91c1c); 
+    border-radius: 22px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 2.2rem; 
+    margin: 0 auto 15px; 
+    color: white; 
+    box-shadow: 0 10px 20px rgba(229, 37, 33, 0.4);
+    animation: float 4s ease-in-out infinite;
+}
+
+.brand h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; }
+.brand p { font-size: 0.9rem; color: var(--mario-yellow); font-weight: 600; margin-top: 5px; text-transform: uppercase; }
+
+.nav-menu { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px; 
+}
+
+.nav-item { 
+    background: transparent; 
+    border: 1px solid transparent; 
+    color: var(--text-gray); 
+    padding: 16px 20px; 
+    border-radius: var(--radius-md); 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+    font-size: 1rem; 
+    font-weight: 600; 
+    cursor: pointer; 
+    transition: var(--transition); 
+    width: 100%; 
+    text-align: left; 
+}
+
+.nav-item i { 
+    font-size: 1.4rem; 
+    width: 28px; 
+    transition: var(--transition);
+}
+
+.nav-item:hover { 
+    background: rgba(255, 255, 255, 0.05); 
+    color: var(--text-white); 
+    transform: translateX(10px);
+    border-color: var(--border-glass);
+}
+
+.nav-item.active { 
+    background: linear-gradient(90deg, var(--mario-red), #b91c1c); 
+    color: white; 
+    box-shadow: 0 8px 16px rgba(229, 37, 33, 0.3);
+    border: none;
+}
+
+.nav-item.active i { transform: scale(1.2); }
+
+/* Main Content Area */
+.main-content { 
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.topbar { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px 0;
+}
+
+.topbar h1 { 
+    font-size: 2.2rem; 
+    font-weight: 800; 
+    background: linear-gradient(to right, #fff, var(--mario-yellow));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Cards & Sections */
+.tab-section { 
+    display: none; 
+    animation: scaleUp 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
+}
+.tab-section.active { display: block; }
+
+.section-header { margin-bottom: 30px; }
+.section-header h2 { font-size: 1.8rem; color: var(--mario-yellow); margin-bottom: 10px; }
+.section-header p { color: var(--text-gray); font-size: 1.1rem; }
+
+.paper-container {
+    background: var(--bg-glass);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-xl);
+    padding: 35px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-premium);
+    position: relative;
+    overflow: hidden;
+}
+
+.paper-container::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 150px; height: 150px;
+    background: radial-gradient(circle, rgba(229, 37, 33, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.paper-title {
+    font-size: 2rem;
+    color: var(--text-white);
+    margin-bottom: 25px;
+    border-left: 6px solid var(--mario-red);
+    padding-left: 20px;
+}
+
+/* Tables - Mario Style */
+.paper-table {
+    width: 100%;
+    border-spacing: 0 10px;
+    border-collapse: separate;
+}
+
+.paper-table th {
+    background: transparent;
+    color: var(--mario-yellow);
+    font-weight: 700;
+    padding: 15px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.paper-table td {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 15px;
+    border-top: 1px solid var(--border-glass);
+    border-bottom: 1px solid var(--border-glass);
+}
+
+.paper-table td:first-child { border-left: 1px solid var(--border-glass); border-radius: 12px 0 0 12px; }
+.paper-table td:last-child { border-right: 1px solid var(--border-glass); border-radius: 0 12px 12px 0; }
+
+.paper-table input {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    outline: none;
+}
+
+.paper-table tr:hover td {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+/* Buttons - Premium Feel */
+.btn { 
+    padding: 14px 28px; 
+    border-radius: var(--radius-md); 
+    font-weight: 700; 
+    cursor: pointer; 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 10px; 
+    transition: var(--transition);
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary { 
+    background: linear-gradient(135deg, var(--mario-red), #b91c1c); 
+    color: white; 
+    box-shadow: 0 10px 20px rgba(229, 37, 33, 0.3);
+}
+
+.btn-primary:hover { 
+    transform: translateY(-5px) scale(1.02); 
+    box-shadow: 0 15px 30px rgba(229, 37, 33, 0.4);
+}
+
+.btn-secondary { 
+    background: var(--bg-glass); 
+    color: var(--text-white); 
+    border: 1px solid var(--border-glass); 
+}
+
+.btn-secondary:hover { 
+    background: rgba(255, 255, 255, 0.1); 
+    border-color: var(--mario-yellow);
+}
+
+/* Math & Resolution Cards */
+.step-card {
+    background: var(--bg-glass);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    margin-bottom: 25px;
+    border: 1px solid var(--border-glass);
+    transition: var(--transition);
+}
+
+.step-card:hover {
+    border-color: var(--mario-blue);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.step-card h3 { 
+    color: var(--mario-blue); 
+    font-size: 1.4rem; 
+    margin-bottom: 20px; 
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.step-card h3::before {
+    content: '\f1b2';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 1rem;
+}
+
+.math-formulas { 
+    background: rgba(0, 0, 0, 0.3);
+    padding: 25px; 
+    border-radius: var(--radius-md); 
+    color: #fff; 
+    font-family: 'Consolas', monospace;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    border-left: 4px solid var(--mario-green);
+    margin-top: 15px;
+}
+
+.interpretation-box { 
+    background: linear-gradient(135deg, rgba(67, 176, 71, 0.15), rgba(67, 176, 71, 0.05)); 
+    border-left: 6px solid var(--mario-green); 
+    padding: 25px; 
+    border-radius: 0 var(--radius-md) var(--radius-md) 0; 
+    margin-top: 20px;
+    color: var(--text-white);
+    font-style: italic;
+}
+
+.interpretation-box b { color: var(--mario-yellow); }
+
+/* Charts Customization */
+.chart-wrapper {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    border: 1px solid var(--border-glass);
+}
+
+canvas {
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+}
+
+/* Inputs & Selection */
+.paper-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-top: 25px;
+    color: var(--text-gray);
+}
+
+.inline-input {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-glass);
+    border-radius: 8px;
+    color: var(--mario-yellow);
+    font-weight: 700;
+    padding: 5px 12px;
+    width: auto;
+    min-width: 60px;
+    transition: var(--transition);
+}
+
+.inline-input:focus {
+    border-color: var(--mario-red);
+    outline: none;
+    box-shadow: 0 0 10px rgba(229, 37, 33, 0.2);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 0;
+        margin-bottom: 20px;
+        flex-direction: row;
+        padding: 15px;
+        overflow-x: auto;
+        border-radius: var(--radius-lg);
+    }
+    
+    .brand { display: none; }
+    
+    .nav-menu {
+        flex-direction: row;
+        width: 100%;
+        padding: 0;
+    }
+    
+    .nav-item {
+        width: auto;
+        white-space: nowrap;
+        padding: 12px 20px;
+    }
+    
+    .topbar h1 { font-size: 1.6rem; }
+}
+
+@media (max-width: 480px) {
+    .app-container { padding: 15px; }
+    .paper-container { padding: 20px; }
+    .paper-title { font-size: 1.4rem; }
+    .btn { width: 100%; justify-content: center; }
+}
+
+/* Print Overrides */
+@media print {
+    .sidebar, .topbar button { display: none !important; }
+    body { background: white !important; color: black !important; }
+    .paper-container, .step-card { 
+        background: white !important; 
+        color: black !important; 
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+    }
+    .math-formulas { background: #f9f9f9 !important; color: black !important; border: 1px solid #ddd !important; }
+}
+
