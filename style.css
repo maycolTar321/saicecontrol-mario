@@ -178,6 +178,8 @@ body {
     justify-content: space-between; 
     align-items: center; 
     padding: 10px 0;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 .topbar h1 { 
@@ -229,10 +231,18 @@ body {
 }
 
 /* Tables - Mario Style */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
 .paper-table {
     width: 100%;
     border-spacing: 0 10px;
     border-collapse: separate;
+    min-width: 500px;
 }
 
 .paper-table th {
@@ -370,6 +380,7 @@ body {
     border-radius: var(--radius-lg);
     padding: 20px;
     border: 1px solid var(--border-glass);
+    overflow-x: auto;
 }
 
 canvas {
@@ -410,9 +421,8 @@ canvas {
         position: relative;
         top: 0;
         margin-bottom: 20px;
-        flex-direction: row;
+        flex-direction: column;
         padding: 15px;
-        overflow-x: auto;
         border-radius: var(--radius-lg);
     }
     
@@ -422,22 +432,29 @@ canvas {
         flex-direction: row;
         width: 100%;
         padding: 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 10px;
     }
     
     .nav-item {
         width: auto;
         white-space: nowrap;
         padding: 12px 20px;
+        flex-shrink: 0;
     }
     
     .topbar h1 { font-size: 1.6rem; }
 }
 
 @media (max-width: 480px) {
-    .app-container { padding: 15px; }
-    .paper-container { padding: 20px; }
-    .paper-title { font-size: 1.4rem; }
+    .app-container { padding: 10px; gap: 10px; }
+    .paper-container { padding: 15px; }
+    .paper-title { font-size: 1.2rem; }
     .btn { width: 100%; justify-content: center; }
+    .topbar { flex-direction: column; align-items: flex-start; }
+    .topbar > div:last-child { width: 100%; justify-content: space-between; margin-top: 10px; }
+    .grid-inputs { grid-template-columns: 1fr !important; }
 }
 
 /* Print Overrides */
