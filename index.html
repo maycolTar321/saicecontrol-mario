@@ -7,9 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#050505">
-    <link rel="icon" href="icon.png">
-    <link rel="apple-touch-icon" href="icon.png">
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js');
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.1.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
@@ -17,47 +19,36 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-    <header class="topbar no-print">
-        <div class="brand-mobile">
-            <i class="fa-solid fa-chart-line"></i>
-            <span>SaiceControl PRO</span>
-        </div>
-        <div class="top-actions">
-            <button id="btn-print-pdf" class="btn-circle" title="Imprimir" onclick="window.print()"><i class="fa-solid fa-file-pdf"></i></button>
-            <button id="btn-export-word" class="btn-circle" title="Word"><i class="fa-solid fa-file-word"></i></button>
-        </div>
-    </header>
-
     <div class="app-container">
-        <!-- Sidebar Navigation (Desktop) -->
-        <aside class="sidebar no-print">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
             <div class="brand">
                 <div class="logo">
                     <i class="fa-solid fa-chart-line"></i>
                 </div>
-                <h2>SaiceControl</h2>
+                <h2>Saice Tarijeño</h2>
                 <p>Análisis Microeconómico</p>
             </div>
             <nav class="nav-menu">
                 <button class="nav-item active" data-target="tab-perfecta">
                     <i class="fa-solid fa-scale-balanced"></i>
-                    <span>C. Perfecta</span>
+                    <span>Competencia Perfecta</span>
                 </button>
                 <button class="nav-item" data-target="tab-imperfecta">
                     <i class="fa-solid fa-chess-knight"></i>
-                    <span>C. Imperfecta</span>
+                    <span>Competencia Imperfecta</span>
                 </button>
                 <button class="nav-item" data-target="tab-elasticidad">
                     <i class="fa-solid fa-compress-alt"></i>
-                    <span>Elasticidad</span>
+                    <span>Elasticidad Demanda</span>
                 </button>
                 <button class="nav-item" data-target="tab-equilibrio">
                     <i class="fa-solid fa-bullseye"></i>
-                    <span>P. Equilibrio</span>
+                    <span>Punto de Equilibrio</span>
                 </button>
                 <button class="nav-item" data-target="tab-indiferencia">
                     <i class="fa-solid fa-code-compare"></i>
-                    <span>Indiferencia</span>
+                    <span>Punto de Indiferencia</span>
                 </button>
                 <button class="nav-item" data-target="tab-capacidad">
                     <i class="fa-solid fa-industry"></i>
@@ -65,24 +56,21 @@
                 </button>
                 <button class="nav-item" data-target="tab-guia">
                     <i class="fa-solid fa-graduation-cap"></i>
-                    <span>Defensa</span>
+                    <span>Guía de Defensa</span>
                 </button>
             </nav>
         </aside>
 
-        <!-- Bottom Navigation (Mobile) -->
-        <nav class="mobile-nav no-print">
-            <div class="nav-item active" data-target="tab-perfecta"><i class="fa-solid fa-scale-balanced"></i><span>CP</span></div>
-            <div class="nav-item" data-target="tab-imperfecta"><i class="fa-solid fa-chess-knight"></i><span>CI</span></div>
-            <div class="nav-item" data-target="tab-elasticidad"><i class="fa-solid fa-compress-alt"></i><span>EL</span></div>
-            <div class="nav-item" data-target="tab-equilibrio"><i class="fa-solid fa-bullseye"></i><span>PE</span></div>
-            <div class="nav-item" data-target="tab-capacidad"><i class="fa-solid fa-industry"></i><span>PR</span></div>
-            <div class="nav-item" data-target="tab-guia"><i class="fa-solid fa-graduation-cap"></i><span>DF</span></div>
-        </nav>
-
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Content Wrapper -->
+            <header class="topbar">
+                <h1>Sistema de Resolución Microeconómica</h1>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 10px;" class="no-print">
+                    <button id="btn-print-pdf" class="btn" style="background: white; color: #1f2937; border: 1px solid #d1d5db; box-shadow: 0 1px 2px rgba(0,0,0,0.05);" onclick="window.print()"><i class="fa-solid fa-file-pdf"></i> Imprimir a PDF</button>
+                    <button id="btn-export-word" class="btn" style="background: #ef4444; color: white; border: none; box-shadow: 0 1px 2px rgba(0,0,0,0.05);"><i class="fa-solid fa-file-word"></i> Exportar a Word</button>
+                </div>
+            </header>
+
             <div class="content-wrapper">
                 
                 <!-- TAB 1: Competencia Perfecta (11 Pasos) -->
@@ -664,13 +652,6 @@
             </div>
         </main>
     </div>
-    <script src="script.js?v=8"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
-                .then(reg => console.log('SaicePRO SW Registered'))
-                .catch(err => console.log('SW Registration failed', err));
-        }
-    </script>
+    <script src="script.js?v=7"></script>
 </body>
 </html>
