@@ -125,14 +125,17 @@ body {
 /* Math Formulations - Premium Look like in image */
 .math-formulas {
     background: #000; /* High contrast black as in image */
+.math-formulas { 
+    background: #000;
     border: 1px solid var(--card-border);
-    border-radius: 16px;
-    padding: 25px;
-    margin-top: 15px;
-    font-size: 1.1rem;
-    overflow-x: auto;
-    color: #fff;
-    box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+    padding: 30px; 
+    border-radius: 20px; 
+    font-size: 1.1rem; 
+    overflow-x: auto; 
+    margin-top: 15px; 
+    line-height: 1.8; 
+    color: #fff; 
+    box-shadow: inset 0 4px 15px rgba(0,0,0,0.5); 
 }
 .math-formulas p { margin-bottom: 10px; }
 .math-formulas h4 { color: var(--primary); margin-bottom: 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }

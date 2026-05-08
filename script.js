@@ -285,12 +285,14 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
 
             // Step 11: Gráfico e Interpretación
-            drawUtilityChart(vX, vY, -1/(-regD.b), c, Cv, cf);
             document.getElementById('box-interpretacion').innerHTML = `
                 <p><b>Interpretación:</b> La utilidad óptima se alcanza en <b>${formatNumber(xOpt, 2)} unidades</b> con un beneficio de <b>${formatNumber(ut, 2)} bs.</b></p>
             `;
             
-            if(window.MathJax) MathJax.typesetPromise();
+            setTimeout(() => {
+                drawUtilityChart(xOpt, utOpt, -1/(-regD.b), c, Cv, cf);
+                if(window.MathJax) MathJax.typesetPromise();
+            }, 100);
         };
     }
 
@@ -421,8 +423,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('eq-im-imp').innerHTML = `\\( IM = -\\frac{2}{${-formatNumber(regD.b)}}x + ${formatNumber(c, 3)} \\)`;
             }
             
-            drawImperfectaChart('chart-imperfecta-custom', m, c, cv, xMono, xComp);
-            if(window.MathJax) MathJax.typesetPromise();
+            setTimeout(() => {
+                drawImperfectaChart('chart-imperfecta-custom', m, c, cv, xMono, xComp);
+                if(window.MathJax) MathJax.typesetPromise();
+            }, 100);
         };
     }
     
